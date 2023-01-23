@@ -17,12 +17,12 @@ Check out the [wiki](https://github.com/ottter/raspberries/wiki) for the full wr
 
 ## Server List
 
-| Hostname   | Hardware | Status |
-|------------|----------|--------|
-| hades      | RPi 3b   | TBD    |
-| persephone | RPi 3b   | TBD    |
-| nyx        | TBD      | TBD    |
-| charon     | TBD      | TBD    |
+| Hostname   | Hardware |  IP  | Status |
+|------------|----------|------|--------|
+| hades      | RPi 3b   | .201 | TBD    |
+| persephone | RPi 3b   | .202 | TBD    |
+| nyx        | TBD      | .203 | TBD    |
+| charon     | TBD      | .204 | TBD    |
 
 ## Important Links
 
@@ -35,3 +35,7 @@ Check out the [wiki](https://github.com/ottter/raspberries/wiki) for the full wr
 
 [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/install) to harness the power of Linux
  in Windows.
+
+ [Pi-hole](https://pi-hole.net/) for a network-side ad blocker
+
+ [K3s](https://k3s.io/) is a lightweight kubernetes tool to help manage the entire cluster
