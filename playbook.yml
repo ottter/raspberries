@@ -1,8 +1,0 @@
----
-- name: Push config to cluster
-  hosts: all
-  connection: local
-  become: yes
-
-  roles:
-    - ansible-playbook

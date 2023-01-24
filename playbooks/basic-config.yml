@@ -1,0 +1,43 @@
+---
+- name: Push config to cluster
+  hosts: all
+  remote_user: ansible
+  become: yes
+
+  vars_files:
+    - vars.yml
+
+  tasks: 
+    - name: "Check that required packages are installed"
+      ansible.builtin.apt:
+        name: 
+          - curl
+          - file
+          - git
+          - htop
+          - tree
+          - firewalld
+          - sshpass
+        state: latest
+        update_cache: yes
+      when: default_packages
+
+    - name: Update cache and upgrade all packages
+      register: updatesys
+      ansible.builtin.apt:
+        name: "*"
+        state: latest
+        update_cache: yes
+      debug:
+        msg:  "{{updatesys.stdout_lines|last}}"
+      when: upgrade_cluster
+
+    - name: Add mappings to /etc/hosts
+      ansible.builtin.blockinfile:
+        path: /etc/hosts
+        block: |
+            {% for item in ansible_play_batch %}
+            {{ hostvars[item].ansible_ssh_host }}   {{ item }}    
+            {% endfor %}
+        marker: "\n# {mark} ANSIBLE MANAGED BLOCK"
+      when: insert_hosts
