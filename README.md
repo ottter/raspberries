@@ -11,9 +11,9 @@ Check out the [wiki](https://github.com/ottter/raspberries/wiki) for the full wr
 ## Goals
 
 ✔️: Free space\
-❌: Ansible playbook to configure Pis\
-❌: PiHole running\
-❌: K3s running
+✔️: Ansible playbook to configure Pis\
+❌: K3s running\
+❌: PiHole running
 
 ## Server List
 

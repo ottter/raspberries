@@ -1,17 +1,12 @@
 ---
-- name: "Check that REQUIRED packages are installed"
-  package:
-    list: "{{ item }}"
+- name: "Check that required packages are installed"
+  apt:
+    name: 
+      - curl
+      - file
+      - git
+      - htop
+      - tree
+      - firewalld
     state: present
-  loop:
-  - curl
-  - file
-  - git
-  - htop
-
-- name: "Check that OPTIONAL packages are installed"
-  package:
-    list: "{{ item }}"
-    state: present
-  loop:
-  - tree
+    update_cache: yes

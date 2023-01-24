@@ -1,3 +1,6 @@
 ---
 ## Install standard packages on fresh install?
 default_packages: true
+
+## Update and Upgrade each server on entire cluster
+upgrade_cluster: true
