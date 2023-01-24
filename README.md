@@ -15,6 +15,15 @@ Check out the [wiki](https://github.com/ottter/raspberries/wiki) for the full wr
 ❌: K3s running\
 ❌: PiHole running
 
+## Quickstart
+
+Process is better outlined in the wiki. This just for basic server setup before any K3s tomfoolery.
+
+```console
+git -C $HOME clone https://github.com/ottter/dotfiles.git && cd "$HOME/$(basename "$_" .git)"
+sudo ansible-playbook playbook.yml -i inventory.yml
+```
+
 ## Server List
 
 | Hostname   |  Hardware  |  IP  |  Status   |

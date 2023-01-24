@@ -12,3 +12,10 @@
   when: upgrade_cluster
   tags:
     - upgrade_cluster
+
+- name: "Insert aliases to /etc/hosts"
+  import_tasks: hosts.yml
+  become: yes
+  when: insert_hosts
+  tags:
+    - insert_hosts
