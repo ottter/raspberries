@@ -3,5 +3,4 @@ all:
     underworld:
     hades:
     persephone:
-  children:
   

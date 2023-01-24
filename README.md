@@ -17,12 +17,12 @@ Check out the [wiki](https://github.com/ottter/raspberries/wiki) for the full wr
 
 ## Server List
 
-| Hostname   | Hardware |  IP  | Status |
-|------------|----------|------|--------|
-| hades      | RPi 3b   | .201 | TBD    |
-| persephone | RPi 3b   | .202 | TBD    |
-| nyx        | TBD      | .203 | TBD    |
-| charon     | TBD      | .204 | TBD    |
+| Hostname   |  Hardware  |  IP  |  Status   |
+|------------|------------|------|-----------|
+| hades      | RPi 3b     | .201 | online    |
+| persephone | RPi 3b     | .202 | online    |
+| nyx        | RPi Zero W | .203 | online    |
+| charon     | TBD        | .204 | TBD       |
 
 ## Important Links
 
