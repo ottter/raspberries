@@ -1,20 +1,25 @@
+---
 all:
   hosts:
-    nyx:
-      ansible_ssh_host: 192.168.0.203
-    charon:
-      ansible_ssh_host: 192.168.0.204
+    underworld:
+      ansible_ssh_host: 192.168.0.200
   children:
-    online:
+    clients:
       hosts:
-        underworld:
-          ansible_ssh_host: 192.168.0.200
         hades:
           ansible_ssh_host: 192.168.0.201
         persephone:
           ansible_ssh_host: 192.168.0.202
+        nyx:
+          ansible_ssh_host: 192.168.0.203
+        charon:
+          ansible_ssh_host: 192.168.0.204
+      vars:
+        description: Client servers to Ansible (relative to WSL Host)
     raspberrypi:
       hosts:
         hades:
         persephone:
         nyx:
+      vars:
+        description: Raspberry Pi servers

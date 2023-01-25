@@ -20,8 +20,8 @@ Check out the [wiki](https://github.com/ottter/raspberries/wiki) for the full wr
 Process is better outlined in the wiki. This just for basic server setup before any K3s tomfoolery.
 
 ```console
-git -C $HOME clone https://github.com/ottter/dotfiles.git && cd "$HOME/$(basename "$_" .git)"
-sudo ansible-playbook playbook.yml -i inventory.yml
+git -C $HOME clone https://github.com/ottter/raspberries.git && cd "$HOME/$(basename "$_" .git)"
+sudo ansible-playbook playbooks/basic-config.yml -kK
 ```
 
 ## Server List
