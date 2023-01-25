@@ -21,7 +21,7 @@ Process is better outlined in the wiki. This just for basic server setup before 
 
 ```console
 git -C $HOME clone https://github.com/ottter/raspberries.git && cd "$HOME/$(basename "$_" .git)"
-sudo ansible-playbook playbooks/basic-config.yml
+sudo ansible-playbook playbooks/basic-config.yml -kK
 ```
 
 ## Server List

@@ -1,6 +1,6 @@
 ---
 - name: Push config to cluster
-  hosts: all
+  hosts: clients
   remote_user: ansible
   become: yes
 
@@ -28,9 +28,11 @@
         name: "*"
         state: latest
         update_cache: yes
+      when: upgrade_cluster
+
+    - name: Display the last line of the previous task to check the stats
       debug:
         msg:  "{{updatesys.stdout_lines|last}}"
-      when: upgrade_cluster
 
     - name: Add mappings to /etc/hosts
       ansible.builtin.blockinfile:
