@@ -17,11 +17,12 @@ Check out the [wiki](https://github.com/ottter/raspberries/wiki) for the full wr
 
 ## Quickstart
 
-Process is better outlined in the wiki. This just for basic server setup before any K3s tomfoolery.
+Process is better outlined in the wiki. This just for basic server setup before any K3s tomfoolery. This *won't* work \
+without SSH keys set up as outlined [HERE](https://github.com/ottter/raspberries/wiki#configuring-ssh-for-ansible).
 
 ```console
 git -C $HOME clone https://github.com/ottter/raspberries.git && cd "$HOME/$(basename "$_" .git)"
-sudo ansible-playbook playbooks/basic-config.yml -kK
+ansible-playbook playbooks/config.yml
 ```
 
 ## Server List
