@@ -1,5 +1,5 @@
 ---
-- name: Push config to cluster
+- name: Push basic config to entire environment
   hosts: all
   become: yes
 
