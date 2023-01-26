@@ -1,7 +1,8 @@
 ---
 all:
   hosts:
-    underworld:
+    localhost:
+      ansible_connection: local
   children:
     clients:
       hosts:
