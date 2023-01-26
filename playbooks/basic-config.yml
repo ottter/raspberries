@@ -1,16 +1,15 @@
 ---
 - name: Push config to cluster
   hosts: clients
-  remote_user: ansible
   become: yes
 
   vars_files:
     - vars.yml
 
-  tasks: 
+  tasks:
     - name: "Check that required packages are installed"
       ansible.builtin.apt:
-        name: 
+        name:
           - curl
           - file
           - git
@@ -23,7 +22,7 @@
       when: default_packages
 
     - name: Update cache and upgrade all packages
-      register: updatesys
+      register: update_sys
       ansible.builtin.apt:
         name: "*"
         state: latest
@@ -32,14 +31,17 @@
 
     - name: Display the last line of the previous task to check the stats
       debug:
-        msg:  "{{updatesys.stdout_lines|last}}"
+        msg:  "{{update_sys.stdout_lines|last}}"
+      when: upgrade_cluster
 
     - name: Add mappings to /etc/hosts
       ansible.builtin.blockinfile:
         path: /etc/hosts
         block: |
-            {% for item in ansible_play_batch %}
-            {{ hostvars[item].ansible_ssh_host }}   {{ item }}    
-            {% endfor %}
-        marker: "\n# {mark} ANSIBLE MANAGED BLOCK"
+            192.168.0.200 underworld
+            192.168.0.201 hades
+            192.168.0.202 persephone
+            192.168.0.203 nyx
+            192.168.0.204 charon
+        marker: "# {mark} ANSIBLE MANAGED BLOCK"
       when: insert_hosts
