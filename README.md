@@ -22,13 +22,17 @@ without SSH keys set up as outlined [HERE](https://github.com/ottter/raspberries
 
 ```console
 git -C $HOME clone https://github.com/ottter/raspberries.git && cd "$HOME/$(basename "$_" .git)"
-ansible-playbook playbooks/config.yml
+[ansible-playbook playbooks/setup-manager.yml -kK]
+ansible-playbook playbooks/config-clients.yml
 ```
+
+> `setup-manager` only needs to be ran once (or when a new server is added to cluster). Afterwards, `config-clients` is used.
 
 ## Server List
 
 | Hostname   |  Hardware  |  IP  |  Status   |
 |------------|------------|------|-----------|
+| localhost  | WSL        | .200 | online    |
 | hades      | RPi 3b     | .201 | online    |
 | persephone | RPi 3b     | .202 | online    |
 | nyx        | RPi Zero W | .203 | online    |

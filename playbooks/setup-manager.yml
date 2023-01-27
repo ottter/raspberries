@@ -1,0 +1,38 @@
+---
+- name: Setup /etc/hosts/ on localhost
+  host: localhost
+  become: yes
+  gather_facts: no
+
+  tasks:
+    - name: Add mappings to /etc/hosts on localhost
+      ansible.builtin.blockinfile:
+        path: /etc/hosts
+        block: "{{ lookup('ansible.builtin.file', '../hosts.txt') }}"
+        marker: "# {mark} ANSIBLE MANAGED BLOCK"
+      when: insert_hosts
+
+
+- name: Generate and Copy SSH keys
+  hosts: all
+  gather_facts: no
+
+  vars_files:
+    - vars.yml
+
+  tasks:
+    - name: Check if SSH key '{{ssh_key_name}}' exists, or generate one
+      openssh_keypair:
+        path: "{{ lookup('env','HOME') + '/.ssh/{{ssh_key_name}}' }}"
+        comment: "{{ssh_key_name}}"
+        type: ed25519
+        state: present
+        force: no
+      delegate_to: localhost
+      run_once: yes
+
+    - name: Copy SSH key to clients
+      authorized_key:
+        user: "{{ lookup('env', 'USER') }}"
+        state: present
+        key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/{{ssh_key_name}}.pub') }}"

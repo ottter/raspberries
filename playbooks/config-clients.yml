@@ -7,6 +7,13 @@
     - vars.yml
 
   tasks:
+    - name: Assure mappings are in /etc/hosts
+      ansible.builtin.blockinfile:
+        path: /etc/hosts
+        block: "{{ lookup('ansible.builtin.file', '../hosts.txt') }}"
+        marker: "# {mark} ANSIBLE MANAGED BLOCK"
+      when: insert_hosts
+
     - name: "Check that required packages are installed"
       ansible.builtin.apt:
         name:
@@ -17,6 +24,7 @@
           - tree
           - firewalld
           - sshpass
+          - vim
         state: latest
         update_cache: yes
       when: default_packages
@@ -33,15 +41,3 @@
       debug:
         msg:  "{{update_sys.stdout_lines|last}}"
       when: upgrade_cluster
-
-    - name: Add mappings to /etc/hosts
-      ansible.builtin.blockinfile:
-        path: /etc/hosts
-        block: |
-            192.168.0.200 underworld
-            192.168.0.201 hades
-            192.168.0.202 persephone
-            192.168.0.203 nyx
-            192.168.0.204 charon
-        marker: "# {mark} ANSIBLE MANAGED BLOCK"
-      when: insert_hosts

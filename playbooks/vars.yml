@@ -1,4 +1,7 @@
 ---
+## Name of SSH key to connect to clients with
+ssh_key_name: "ansible"
+
 ## Install standard packages on fresh install
 default_packages: true
 
