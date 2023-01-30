@@ -15,19 +15,6 @@ Check out the [wiki](https://github.com/ottter/raspberries/wiki) for the full wr
 ❌: K3s running\
 ❌: PiHole running
 
-## Quickstart
-
-Process is better outlined in the wiki. This just for basic server setup before any K3s tomfoolery. This *won't* work \
-without SSH keys set up as outlined [HERE](https://github.com/ottter/raspberries/wiki#configuring-ssh-for-ansible).
-
-```console
-git -C $HOME clone https://github.com/ottter/raspberries.git && cd "$HOME/$(basename "$_" .git)"
-[ansible-playbook playbooks/setup-manager.yml -kK]
-ansible-playbook playbooks/config-clients.yml
-```
-
-> `setup-manager` only needs to be ran once (or when a new server is added to cluster). Afterwards, `config-clients` is used.
-
 ## Server List
 
 | Hostname   |  Hardware  |  IP  |  Status   |
@@ -37,6 +24,32 @@ ansible-playbook playbooks/config-clients.yml
 | persephone | RPi 3b     | .202 | online    |
 | nyx        | RPi Zero W | .203 | online    |
 | charon     | TBD        | .204 | TBD       |
+
+## Quickstart
+
+Process is better outlined in the wiki. This just for basic server setup before any K3s tomfoolery. This *won't* work \
+without SSH keys set up as outlined [HERE](https://github.com/ottter/raspberries/wiki#configuring-ssh-for-ansible).
+
+> clone the repo into your home directory and then `cd` into the new directory
+
+```console
+git -C $HOME clone -b main https://github.com/ottter/raspberries.git && cd "$HOME/$(basename "$_" .git)"
+```
+
+Make sure `hosts.txt` is using the desired IPs and hostname, and update `inventory.yml` to match. There are better ways \
+to do this, especially at scale, but this works for me for now. I will improve it later.
+
+> `setup-manager` only need to be ran first time, when a new server is added, or when SSH keys need to be recreated.
+
+```console
+ansible-playbook playbooks/setup-manager.yml -kK
+```
+
+> After initialization, `config-clients` will be the primary playbook that should be ran.
+
+```console
+ansible-playbook playbooks/config-clients.yml
+```
 
 ## Important Links
 
