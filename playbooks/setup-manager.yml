@@ -1,8 +1,11 @@
 ---
 - name: Setup /etc/hosts/ on localhost
-  host: localhost
+  hosts: localhost
   become: yes
   gather_facts: no
+
+  vars_files:
+    - vars.yml
 
   tasks:
     - name: Add mappings to /etc/hosts on localhost
@@ -12,7 +15,6 @@
         marker: "# {mark} ANSIBLE MANAGED BLOCK"
       when: insert_hosts
 
-
 - name: Generate and Copy SSH keys
   hosts: all
   gather_facts: no
@@ -21,15 +23,28 @@
     - vars.yml
 
   tasks:
-    - name: Check if SSH key '{{ssh_key_name}}' exists, or generate one
+    - name: Get desired SSH port (default 22)
+      delegate_to: localhost
+      set_fact:
+        ansible_ssh_port: "{{ hostvars[inventory_hostname]['ansible_ssh_port'] | default('22') }}"
+
+    - name: Check if SSH key '{{ ssh_key_name }}' exists, or generate one
       openssh_keypair:
-        path: "{{ lookup('env','HOME') + '/.ssh/{{ssh_key_name}}' }}"
-        comment: "{{ssh_key_name}}"
+        path: "{{ lookup('env','HOME') + '/.ssh/' + ssh_key_name }}"
+        comment: "{{ ssh_key_name }}"
         type: ed25519
         state: present
         force: no
       delegate_to: localhost
       run_once: yes
+
+    - name: Setup Known Hosts With Port
+      delegate_to: localhost
+      known_hosts:
+        key: "{{ lookup('pipe', 'ssh-keyscan -trsa -p ' + ansible_ssh_port | string + ' ' + inventory_hostname) }}"
+        name: "{{ inventory_hostname }}"
+        state: present
+## localhost ssh-keyscan errors can be solved by: sudo echo "ServerAliveInterval 60" >> ~/.ssh/config
 
     - name: Copy SSH key to clients
       authorized_key:

@@ -4,7 +4,9 @@ Repo to contain all the scripts, configs, and instructions I use to build out my
 times before without documentation and it's always a mess to bring it back online if anything goes wrong. Hopefully \
 this will resolve that issue for future screwups.
 
-My goals with this project are *Agile* and subject to change. I aim to write this so that anyone reading it may understand.
+My goals with this project are *Agile* and subject to change. I aim to write this so that anyone reading it may \
+understand. Since this is built for a Raspberry Pi cluster managed by WSL, I'm not bothering (yet?) with support for \
+other operating systems, so atleast use some Ubuntu/Debian based OS for simplicity. 
 
 Check out the [wiki](https://github.com/ottter/raspberries/wiki) for the full writeup!
 

@@ -8,5 +8,8 @@ default_packages: true
 ## Update and Upgrade each server on entire cluster
 upgrade_cluster: true
 
-## Insert /etc/hosts entries into each server
+## Insert /etc/hosts entries onto each server
 insert_hosts: true
+
+## Configure UFW for improved security on cluster
+configure_firewall: true
