@@ -1,0 +1,53 @@
+---
+  - apt:
+      name:
+        - ufw
+      state: latest
+      update_cache: yes
+  
+  - ufw:
+      logging: 'on'
+
+  - name: Allow all access to specific tcp ports
+    ufw:
+      rule: allow
+      port: '{{ item }}'
+      proto: tcp
+    loop:
+      - '22'
+      - '80'
+    notify:
+      - reload ufw
+
+  - ufw:
+      rule: reject
+      port: auth
+      log: yes
+    notify:
+      - reload ufw
+
+  - ufw:
+      rule: limit
+      port: ssh
+      proto: tcp
+    notify:
+      - reload ufw
+
+  - name: Allow all access from RFC1918 networks to this host
+    ufw:
+      rule: allow
+      src: '{{ item }}'
+    loop:
+      - 10.0.0.0/8
+      - 172.16.0.0/12
+      - 192.168.0.0/16
+    notify:
+      - reload ufw
+
+  - ufw:
+      state: enabled
+
+  handlers:
+  - name: reload ufw
+    ufw:
+      state: reloaded

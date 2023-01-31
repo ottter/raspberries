@@ -14,7 +14,7 @@
         marker: "# {mark} ANSIBLE MANAGED BLOCK"
       when: insert_hosts
 
-    - name: "Check that required packages are installed"
+    - name: Check that required packages are installed
       ansible.builtin.apt:
         name:
           - curl
@@ -41,3 +41,21 @@
       debug:
         msg:  "{{update_sys.stdout_lines|last}}"
       when: upgrade_cluster
+
+
+- name: Configure firewall on clients
+  hosts: clients
+  become: yes
+
+  vars_files:
+    - vars.yml
+
+  tasks:
+    - name: Import firewall tasks
+      import_tasks: tasks/ufw.yml
+      when: configure_firewall
+
+  handlers:
+    - name: reload ufw
+      ufw:
+        state: reloaded
