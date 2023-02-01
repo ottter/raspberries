@@ -1,11 +1,13 @@
 ---
-  - apt:
+  - name: Install UFW
+    apt:
       name:
         - ufw
       state: latest
       update_cache: yes
   
-  - ufw:
+  - name: Enable UFW logging
+    ufw:
       logging: 'on'
 
   - name: Allow all access to specific tcp ports
@@ -19,14 +21,16 @@
     notify:
       - reload ufw
 
-  - ufw:
+  - name: Reject connections instead of Deny
+    ufw:
       rule: reject
       port: auth
       log: yes
     notify:
       - reload ufw
 
-  - ufw:
+  - name: Rate limit SSH connection
+    ufw:
       rule: limit
       port: ssh
       proto: tcp
@@ -44,7 +48,8 @@
     notify:
       - reload ufw
 
-  - ufw:
+  - name: Change UFW state to Enabled
+    ufw:
       state: enabled
 
   handlers:
