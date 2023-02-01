@@ -12,4 +12,4 @@ upgrade_cluster: true
 insert_hosts: true
 
 ## Configure UFW for improved security on cluster
-configure_firewall: true
+configure_firewall: false
