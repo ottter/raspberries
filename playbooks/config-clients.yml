@@ -19,7 +19,6 @@
         name:
           - curl
           - file
-          - git
           - htop
           - tree
           - firewalld
@@ -45,6 +44,7 @@
 
 - name: Configure firewall on clients
   hosts: clients
+  gather_facts: no
   become: yes
 
   vars_files:

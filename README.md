@@ -6,7 +6,7 @@ this will resolve that issue for future screwups.
 
 My goals with this project are *Agile* and subject to change. I aim to write this so that anyone reading it may \
 understand. Since this is built for a Raspberry Pi cluster managed by WSL, I'm not bothering (yet?) with support for \
-other operating systems, so atleast use some Ubuntu/Debian based OS for simplicity. 
+other operating systems, so atleast use some Ubuntu/Debian based OS for simplicity.
 
 Check out the [wiki](https://github.com/ottter/raspberries/wiki) for the full writeup!
 
@@ -52,6 +52,10 @@ ansible-playbook playbooks/setup-manager.yml -kK
 ```console
 ansible-playbook playbooks/config-clients.yml
 ```
+
+## Possible Issues (and what to do)
+
+### [CLICK HERE](https://github.com/ottter/raspberries/wiki/Common-Problems)
 
 ## Important Links
 

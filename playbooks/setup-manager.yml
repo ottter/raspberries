@@ -51,3 +51,4 @@
         user: "{{ lookup('env', 'USER') }}"
         state: present
         key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/{{ssh_key_name}}.pub') }}"
+## MiM/DNS Spoof errors can be solved by: ssh-keygen -f ~/.ssh/known_hosts -R "{alias}"
