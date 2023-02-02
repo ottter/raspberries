@@ -4,6 +4,9 @@ all:
     localhost:
       ansible_connection: local
   children:
+    k3s-manager:
+      hosts:
+        hades:
     clients:
       hosts:
         hades:

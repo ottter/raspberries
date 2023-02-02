@@ -44,6 +44,7 @@ to do this, especially at scale, but this works for me for now. I will improve i
 > `setup-manager` only need to be ran first time, when a new server is added, or when SSH keys need to be recreated.
 
 ```console
+ansible-galaxy collection install -r playbooks/requirements.yml
 ansible-playbook playbooks/setup-manager.yml -kK
 ```
 
@@ -55,7 +56,7 @@ ansible-playbook playbooks/config-clients.yml
 
 ## Possible Issues (and what to do)
 
-### [CLICK HERE](https://github.com/ottter/raspberries/wiki/Common-Problems)
+### [CLICK HERE](https://github.com/ottter/raspberries/wiki/3.-Common-Problems)
 
 ## Important Links
 

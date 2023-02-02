@@ -1,5 +1,5 @@
-192.168.0.200 underworld
-192.168.0.201 hades
+192.168.0.200 underworld ansible-manager
+192.168.0.201 hades docker-controller
 192.168.0.202 persephone
 192.168.0.203 nyx
 192.168.0.204 charon

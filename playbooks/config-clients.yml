@@ -41,6 +41,15 @@
         msg:  "{{update_sys.stdout_lines|last}}"
       when: upgrade_cluster
 
+    - name: Enable IP Forwarding (IPv4)
+      ansible.posix.sysctl:
+        name: net.ipv4.ip_forward
+        value: '1'
+        sysctl_set: true
+        state: present
+        reload: true
+      ignore_errors: true
+      when: enable_forwarding
 
 - name: Configure firewall on clients
   hosts: clients
@@ -56,6 +65,6 @@
       when: configure_firewall
 
   handlers:
-    - name: reload ufw
+    - name: Reload UFW
       ufw:
         state: reloaded

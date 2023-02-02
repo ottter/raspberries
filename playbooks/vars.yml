@@ -11,5 +11,8 @@ upgrade_cluster: true
 ## Insert /etc/hosts entries onto each server
 insert_hosts: true
 
+## Enable IP Forwarding across across the cluster
+enable_forwarding: true
+
 ## Configure UFW for improved security on cluster
 configure_firewall: false

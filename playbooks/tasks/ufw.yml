@@ -51,8 +51,3 @@
   - name: Change UFW state to Enabled
     ufw:
       state: enabled
-
-  handlers:
-  - name: reload ufw
-    ufw:
-      state: reloaded
